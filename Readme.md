@@ -54,7 +54,7 @@ This project benchmarks **Automatic Speech Recognition (ASR)** systems across **
 - Same dataset across all models
 
 ## WER Calculation
-- Word Error Rate (WER) was evaluated using the `jiwer` library.
+- Word Error Rate (WER) was evaluated using the standard WER formula.
 - Both reference and hypothesis transcripts were normalized (lowercasing, punctuation removal, and space normalization) before computing WER.
 ### The Formula
 The error rate is calculated using the following equation:
