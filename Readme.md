@@ -137,5 +137,23 @@ The following table details the offline performance comparison between Voxtral a
 > 🎯 **Winner for Accuracy:** `Voxtral` (Consistently lower WER)  
 > ⚡ **Winner for Latency:** `Faster Whisper` (Significantly lower UPL)
 
+## 🚀 Future Roadmap: Optimizing for Banking Voice Pipelines
+
+The core challenge for a banking-grade ASR pipeline is the **WER-Latency Trade-off**. In financial services, accuracy is non-negotiable for compliance, yet high latency leads to "caller overlap" and poor UX. 
+
+To bridge the gap between Voxtral's accuracy and Whisper's latency, the following research steps are proposed:
+
+### 1. 🇮🇳 Hinglish-Specific Fine-Tuning (Top-Layer Adaptation)
+Current observations suggest Voxtral struggles with nuances in Hinglish audio. We plan to:
+* **Layer-Wise Fine-Tuning:** Freeze the base LLM/Encoder and fine-tune only the adapter or top-level projection layers using a curated Hinglish dataset (e.g., Microsoft’s Speechocean or one i used here).
+* **Domain-Specific Vocabulary:** Inject banking-specific terminology (e.g., "OTP," "CVV," "Beneficiary," "UPI") into the training corpus to reduce WER on critical keywords.
+
+### 2. ⚖️ Determining the "Banking Threshold"
+We need to identify the **"Maximum Tolerable Latency"** for a natural banking conversation. 
+* **Hypothesis:** In a voice bot, a UPL > 2.0s causes users to repeat themselves. 
+* **Experiment:** Test Voxtral with a **chunk delay of 720ms–1200ms** to find a "sweet spot" where WER remains low enough for banking (Target: < 0.15) but UPL stays under the 2-second threshold.
+
+### 3. 🛠️ RAG-Augmented Correction
+* Implement a post-processing **RAG (Retrieval-Augmented Generation)** layer. If the ASR output is ambiguous, the system can query a banking-term vector database to "auto-correct" the transcription before it hits the downstream NLU.
 
 
