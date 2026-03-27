@@ -56,6 +56,17 @@ This project benchmarks **Automatic Speech Recognition (ASR)** systems across **
 ## WER Calculation
 - Word Error Rate (WER) was evaluated using the `jiwer` library.
 - Both reference and hypothesis transcripts were normalized (lowercasing, punctuation removal, and space normalization) before computing WER.
+### The Formula
+The error rate is calculated using the following equation:
+
+$$WER = \frac{S + D + I}{N}$$
+
+| Variable | Name | Description |
+| :--- | :--- | :--- |
+| **S** | **Substitutions** | Words that were replaced (e.g., "cat" instead of "can"). |
+| **D** | **Deletions** | Words that were omitted from the transcript. |
+| **I** | **Insertions** | Extra words added that were not in the reference. |
+| **N** | **Reference Words** | The total count of words in the original ground-truth text. |
 
 ## Model Loading
 - Voxtral for Realtime Streaming was Inferenced using vLLM engine for various delay settings.
