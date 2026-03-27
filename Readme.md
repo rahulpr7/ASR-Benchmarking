@@ -80,24 +80,38 @@ This project benchmarks **Automatic Speech Recognition (ASR)** systems across **
 |        | 960        | 33.73         | 34.92         | 287.54       | 297.37       | 0.2230  | 0.376   |
 |        | 2400       | 32.39         | 35.38         | 272.32       | 277.17       | 0.2230  | 0.376   |
 
-###  Observations
-- **480 ms delay** → Higher observed TTFT (~500 ms) occurs because the model receives the first chunk at *t = 0*, but lacks sufficient context to generate a token, so it waits for the next chunk.
+# 📊 Sreaming Performance Observations: Delay Configuration Analysis
 
-- In real-world streaming, the **effective TTFT** should include the chunk delay:
-  - For **960 ms / 2400 ms delay** →  
-    `TTFT ≈ delay time + model TTFT`
-  - For **480 ms delay** →  
-    `TTFT ≈ 480 ms + model TTFT`
+This section outlines the performance characteristics across different delay configurations (480ms, 960ms, and 2400ms) based on Time To First Token (TTFT), Word Error Rate (WER), and UPL metrics.
 
-- Therefore, despite the higher measured TTFT, **480 ms delay actually results in lower real-world TTFT latency** compared to 960 ms and 2400 ms, since the initial buffering time is smaller.
-- In real world we don,t have initial chunk at t=0.
--**WINNER** = 480ms
+## ⏱️ Time To First Token (TTFT)
 
-- **WER Comparision** -> Wer is approximately same for all three delay settings
-- **WINNER** = All three same
+- **Measured vs. Real-World:** A **480ms delay** shows a higher *measured* model TTFT (~500ms) in testing. This happens because the model receives the first chunk at `t = 0` but waits for the next chunk to gain sufficient context before generating a token.
+- **Real-World Streaming Impact:** In real-world scenarios, the initial chunk is not instantly available at `t = 0`. Therefore, the effective TTFT must include the chunk buffering delay:
+  - **For 960ms / 2400ms delay:** `Effective TTFT ≈ delay time + model TTFT`
+  - **For 480ms delay:** `Effective TTFT ≈ 480ms + model TTFT`
+- **Conclusion:** Despite the higher *measured* model TTFT, a **480ms delay** actually results in the **lowest real-world TTFT latency** because the initial buffering time is significantly smaller.
 
-- **UPL** -> For 30s clips , 2400ms is giving low UPL but for short clips 480ms is good
--**WINNER** = 2400ms(Long Clips) and 480ms(Short Clips)
+> 🏆 **Winner:** `480ms`
+
+---
+
+## 🎯 Word Error Rate (WER)
+
+- **Comparison:** The Word Error Rate remains stable and is approximately the same across all three delay settings. Changing the chunk delay within this range does not significantly impact overall accuracy.
+
+> 🏆 **Winner:** `Tie` (All three settings perform equally)
+
+---
+
+## 📉 UPL Performance
+
+- **Duration Dependency:** The optimal delay setting for UPL depends on the length of the processed clip.
+  - **Long Clips (~30s):** `2400ms` provides a lower UPL.
+  - **Short Clips:** `480ms` yields better UPL results.
+
+> 🏆 **Winner:** `2400ms` (Long Clips) | `480ms` (Short Clips)
+
 
 ## 2. Offline Comparison (Voxtral vs Faster Whisper)
 
