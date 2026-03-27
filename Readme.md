@@ -163,7 +163,7 @@ Current observations suggest Voxtral struggles with nuances in Hinglish audio. W
 
 ### 2. Model-Level Improvements
 
-* **Adaptive Chunking:** Instead of fixed chunks, dynamically adjust based on speech rate or detected pauses. Slower speech → larger chunk (better context, lower WER).
+* **Adaptive Chunking:** Instead of fixed chunks, dynamically adjust based on speech rate or detected pauses. If Slower speech then we should take larger chunk which will result in better context and lower WER.
 * **Confidence-Based Trigger:** Only output ASR if token confidence > threshold; otherwise wait a few more ms for context. This slightly increases latency but reduces errors on sensitive terms.
 
 ### 3. RAG-Augmented Correction
