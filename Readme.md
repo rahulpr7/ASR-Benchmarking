@@ -161,7 +161,7 @@ Current observations suggest Voxtral struggles with nuances in Hinglish audio. W
 * **Language-Adaptive Pretraining:** Briefly pretrain the encoder on a larger Hinglish corpus before fine-tuning top layers. It helps with natural code-switching.
 * **Layer-Wise Fine-Tuning:** Freeze the base LLM/Encoder and fine-tune only the adapter or top-level projection layers using a curated Hinglish dataset (e.g., Microsoft’s Speechocean or one i used here).
 * **Domain-Specific Vocabulary:** Inject banking-specific terminology (e.g., "OTP," "CVV," "Beneficiary," "UPI") into the training corpus to reduce WER on critical keywords.
-* **Language-Adaptive Pretraining:** Briefly pretrain the encoder on a larger Hinglish corpus before fine-tuning top layers. It helps with natural code-switching.
+
 
 ### 2. Model-Level Improvements
 
