@@ -4,7 +4,7 @@
 This project benchmarks **Automatic Speech Recognition (ASR)** systems across **streaming and offline modes** using:
 
 - Voxtral Mini 4B Realtime (Streaming + Offline)
-- Faster Whisper (large-v3-turbo) (Streaming + Offline baseline)
+- Faster Whisper (large-v3-turbo) (Offline baseline)
 
 # 📈 Metrics
 
