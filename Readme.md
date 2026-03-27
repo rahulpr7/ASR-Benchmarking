@@ -153,7 +153,7 @@ We need to identify the **"Maximum Tolerable Latency"** for a natural banking co
 * **Hypothesis:** In a voice bot, a UPL > 2.0s causes users to repeat themselves. 
 * **Experiment:** Test Voxtral with a **chunk delay of 720ms–1200ms** to find a "sweet spot" where WER remains low enough for banking (Target: < 0.15) but UPL stays under the 2-second threshold.
 
-### 3.  RAG-Augmented Correction
+### 3. RAG-Augmented Correction
 * Implement a post-processing **RAG (Retrieval-Augmented Generation)** layer. If the ASR output is ambiguous, the system can query a banking-term vector database to "auto-correct" the transcription before it hits the downstream NLU.
 
 
