@@ -154,15 +154,17 @@ The core challenge for a banking-grade ASR pipeline is the **WER-Latency Trade-o
 
 To bridge the gap between Voxtral's accuracy and Whisper's latency, the following research steps are proposed:
 
-### 1. Hinglish-Specific Fine-Tuning (Top-Layer Adaptation)
+### 1. Hinglish-Specific Pretraining and Fine-Tuning (Top-Layer Adaptation)
 Current observations suggest Voxtral struggles with nuances in Hinglish audio. We plan to:
+* **Language-Adaptive Pretraining:** Briefly pretrain the encoder on a larger Hinglish corpus before fine-tuning top layers. It helps with natural code-switching.
 * **Layer-Wise Fine-Tuning:** Freeze the base LLM/Encoder and fine-tune only the adapter or top-level projection layers using a curated Hinglish dataset (e.g., Microsoft’s Speechocean or one i used here).
 * **Domain-Specific Vocabulary:** Inject banking-specific terminology (e.g., "OTP," "CVV," "Beneficiary," "UPI") into the training corpus to reduce WER on critical keywords.
+* **Language-Adaptive Pretraining:** Briefly pretrain the encoder on a larger Hinglish corpus before fine-tuning top layers. It helps with natural code-switching.
 
-### 2. Determining the "Banking Threshold"
-We need to identify the **"Maximum Tolerable Latency"** for a natural banking conversation. 
-* **Hypothesis:** In a voice bot, a UPL > 2.0s causes users to repeat themselves. 
-* **Experiment:** Test Voxtral with a **chunk delay of 720ms–1200ms** to find a "sweet spot" where WER remains low enough for banking (Target: < 0.15) but UPL stays under the 2-second threshold.
+### 2. Model-Level Improvements
+
+* **Adaptive Chunking:** Instead of fixed chunks, dynamically adjust based on speech rate or detected pauses. Slower speech → larger chunk (better context, lower WER).
+* **Confidence-Based Trigger:** Only output ASR if token confidence > threshold; otherwise wait a few more ms for context. This slightly increases latency but reduces errors on sensitive terms.
 
 ### 3. RAG-Augmented Correction
 * Implement a post-processing **RAG (Retrieval-Augmented Generation)** layer. If the ASR output is ambiguous, the system can query a banking-term vector database to "auto-correct" the transcription before it hits the downstream NLU.
