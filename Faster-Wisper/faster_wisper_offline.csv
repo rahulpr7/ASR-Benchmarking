@@ -1,0 +1,4 @@
+Bucket,Model,p50_ttft_s,p95_ttft_s,p50_upl_s,p95_upl_s,wer,p50_wer,p95_wer
+5s,Faster-Whisper,1.023,1.157,1.023,1.157,0.422,0.275,1.065
+15s,Faster-Whisper,1.562,4.857,1.562,4.859,0.433,0.359,0.825
+30s,Faster-Whisper,5.12,5.826,5.714,6.585,0.483,0.389,1

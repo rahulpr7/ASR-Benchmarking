@@ -1,0 +1,3 @@
+Bucket,Model,Delay_ms,p50_ttft_s,p95_ttft_s,p50_upl_s,p95_upl_s,wer,p50_wer,p95_wer
+5s,Faster-Whisper-SimStreaming,480,1.097,1.574,4.94,12.983,0.417,0.3,1.065
+15s,Faster-Whisper-SimStreaming,480,1.107,1.343,18.436,51.282,0.423,0.375,0.838
