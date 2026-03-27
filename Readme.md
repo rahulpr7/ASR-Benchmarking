@@ -6,7 +6,7 @@ This project benchmarks **Automatic Speech Recognition (ASR)** systems across **
 - Voxtral Mini 4B Realtime (Streaming + Offline)
 - Faster Whisper (large-v3-turbo) (Streaming + Offline baseline)
 
-# Metrics
+# 📈 Metrics
 
 ### Latency and Time To First Token (TTFT)
 - **Streaming:**  
@@ -32,7 +32,7 @@ This project benchmarks **Automatic Speech Recognition (ASR)** systems across **
 
 ---
 
-# Methodology
+# 📝 Methodology
 
 ## Hardware
 - GPU: NVIDIA A100
