@@ -8,13 +8,13 @@ This project benchmarks **Automatic Speech Recognition (ASR)** systems across **
 
 # Metrics
 
-### Latency and Time To First TokeTn (TTFT)
+### Latency and Time To First Token (TTFT)
 - **Streaming:**  
-  UPL = Time from audio end - Final transcription available
-  TTFT = First token emitted - Time from first chunk sent 
+-  UPL = Time from audio end - Final transcription available
+-  TTFT = First token emitted - Time from first chunk sent 
 - **Offline:**  
-  UPL(Total Latency) = Full Transcription Available − Start time of model after sending full audio 
-  TTFT = First Token emmited - Full audio sent 
+-  UPL(Total Latency) = Full Transcription Available − Start time of model after sending full audio 
+-  TTFT = First Token emmited - Full audio sent 
 
 ---
 
