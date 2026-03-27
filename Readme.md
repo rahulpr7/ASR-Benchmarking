@@ -65,7 +65,7 @@ This project benchmarks **Automatic Speech Recognition (ASR)** systems across **
 
 # 📊 Results
 
-## 1. Voxtral Realtime Streaming Results
+## Voxtral Realtime Streaming Results
 
 
 | Bucket | Delay (ms) | p50 TTFT (ms) | p95 TTFT (ms) | p50 UPL (ms) | p95 UPL (ms) | p50 WER | p95 WER |
@@ -113,7 +113,7 @@ This section outlines the performance characteristics across different delay con
 > 🏆 **Winner:** `2400ms` (Long Clips) | `480ms` (Short Clips)
 
 
-## 2. Offline Comparison: Voxtral vs. Faster Whisper
+## Offline Transcription Comparison: Voxtral vs. Faster Whisper
 
 The following table details the offline performance comparison between Voxtral and Faster Whisper across 5s, 15s, and 30s audio buckets.
 
