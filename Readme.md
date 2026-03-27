@@ -113,27 +113,29 @@ This section outlines the performance characteristics across different delay con
 > 🏆 **Winner:** `2400ms` (Long Clips) | `480ms` (Short Clips)
 
 
-## 2. Offline Comparison (Voxtral vs Faster Whisper)
+## 2. Offline Comparison: Voxtral vs. Faster Whisper
 
-| Model   | Bucket | p50 TTFT (s) | p95 TTFT (s) | p50 UPL (s) | p95 UPL (s) | p50 WER | p95 WER | 
-|---------|--------|-------------|-------------|-------------|-------------|---------|---------|
-| Voxtral | 5s     | 0.0138      | 0.0141      | 6.054       | 7.575       | 0.250   | 0.311   | 
-| Whisper | 5s     | 1.023       | 1.157       | 1.023       | 1.157       | 0.275   | 1.065   |
------------------------------------------------------------------------------------------------- 
-| Voxtral | 15s    | 0.0142      | 0.0151      | 14.879      | 19.059      | 0.216   | 0.764   | 
-| Whisper | 15s    | 1.562       | 4.857       | 1.562       | 4.859       | 0.359   | 0.825   | 
------------------------------------------------------------------------------------------------
-| Voxtral | 30s    | 0.0138      | 0.0148      | 21.226      | 22.453      | 0.223   | 0.373   | 
-| Whisper | 30s    | 5.120       | 5.826       | 5.714       | 6.585       | 0.389   | 1.000   |
+The following table details the offline performance comparison between Voxtral and Faster Whisper across 5s, 15s, and 30s audio buckets.
 
+| Model | Bucket | p50 TTFT (s) | p95 TTFT (s) | p50 UPL (s) | p95 UPL (s) | p50 WER | p95 WER |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Voxtral** | 5s | 0.0138 | 0.0141 | 6.054 | 7.575 | 0.250 | 0.311 |
+| **Whisper** | 5s | 1.023 | 1.157 | 1.023 | 1.157 | 0.275 | 1.065 |
+| **Voxtral** | 15s | 0.0142 | 0.0151 | 14.879 | 19.059 | 0.216 | 0.764 |
+| **Whisper** | 15s | 1.562 | 4.857 | 1.562 | 4.859 | 0.359 | 0.825 |
+| **Voxtral** | 30s | 0.0138 | 0.0148 | 21.226 | 22.453 | 0.223 | 0.373 |
+| **Whisper** | 30s | 5.120 | 5.826 | 5.714 | 6.585 | 0.389 | 1.000 |
 
-### Key Observation
-- Whisper is generally **faster offline**(Lower UPL Value)
-- TTFT is excluded from comparision since it represents **first segment emission**, not true token latency for Wisper. Wisper architecture doesnt stream tokens one by one.
-- WER is better for Voxtral
+### 🔍 Key Observations
 
--**WINNER** -> Voxtral(In terms of Accuracy)
-               Wisper(In terms of Latency)
+* **Latency Advantage (UPL):** Faster Whisper is generally much faster for offline processing, consistently showing significantly lower UPL (User Perceived Latency) values across all tested audio lengths.
+* **Accuracy Advantage (WER):** Voxtral significantly outperforms Whisper in accuracy. It maintains a lower and more stable Word Error Rate (WER), avoiding the high p95 WER spikes observed in Whisper.
+* **The TTFT Caveat:** TTFT (Time To First Token) should be excluded from direct comparison here. Faster Whisper's architecture does not stream tokens one by one; instead, it emits full segments. Therefore, its recorded TTFT represents the *first segment emission* rather than a true token latency measurement.
+
+### 🏆 Final Verdict
+
+> 🎯 **Winner for Accuracy:** `Voxtral` (Consistently lower WER)  
+> ⚡ **Winner for Latency:** `Faster Whisper` (Significantly lower UPL)
 
 
 
